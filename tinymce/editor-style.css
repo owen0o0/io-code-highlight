@@ -1,0 +1,29 @@
+pre {
+    position:relative!important;
+    overflow-y: auto!important;
+    border: 0!important;
+    color: #777!important;
+    border-radius: 3px!important;
+    padding: 1.25rem!important;
+    padding-top: 2rem!important;
+    margin: 1.5rem 0!important;
+    line-height: 1.2!important;
+    white-space: pre-wrap!important;
+    word-wrap: break-word!important;
+    background-color: rgba(0,0,0,.04)!important;
+}
+pre::before {
+    content: " ";
+    position: absolute;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: rgba(136,136,136,.4);
+    width: 10px;
+    height: 10px;
+    top: 0;
+    left: 10px;
+    margin-top: 11px;
+    -webkit-box-shadow: 16px 0 rgba(136,136,136,.4), 32px 0 rgba(136,136,136,.4);
+    box-shadow: 16px 0 rgba(136,136,136,.4), 32px 0 rgba(136,136,136,.4);
+    transition-duration: .3s;
+}

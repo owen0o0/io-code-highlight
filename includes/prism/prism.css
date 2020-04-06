@@ -1,0 +1,313 @@
+/* PrismJS 1.19.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript+c+csharp+cpp+java+json+markup-templating+perl+php+python+sql&plugins=line-highlight+line-numbers */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+.ioch-code-highlight{
+	position: relative;
+    overflow-y: auto;
+    border: 0;
+    color: #777;
+    border-radius: 5px;
+    padding-top: 2rem;
+    margin: 1.5rem 0;
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+	background-color: #fff;
+	border: 1px solid #eee;
+}
+.ioch-code-highlight:before {
+    content: " ";
+    position: absolute;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: rgba(136,136,136,.4);
+    width: 10px;
+    height: 10px;
+    top: 0;
+    left: 10px;
+    margin-top: 11px;
+    -webkit-box-shadow: 16px 0 rgba(136,136,136,.4), 32px 0 rgba(136,136,136,.4);
+    box-shadow: 16px 0 rgba(136,136,136,.4), 32px 0 rgba(136,136,136,.4);
+    transition-duration: .3s;
+}
+.ioch-code-highlight:hover::before{background:#fc625d;-webkit-box-shadow:16px 0 #fdbc40, 32px 0 #35cd4b;box-shadow:16px 0 #fdbc40, 32px 0 #35cd4b}
+.ioch-code-highlight:after {
+    content: attr(lang);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+	left: 0;
+	text-transform: uppercase;
+    font-size: 12px;
+    line-height: 2rem;
+}
+.ioch-code-highlight .io-btn-copy {
+	position: absolute;
+	border-radius: 3px;
+	background-color: rgba(255, 255, 255, 0.1);
+	color: #fff;
+	font-size: 12px;
+	top: 5px;
+	right: 5px;
+	z-index:1;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	margin: 0 0 0 8px;
+	text-decoration: none;
+	width: 23px;
+	height: 23px;
+	opacity: 0;
+	background-position: 0 0;
+	background-size: contain;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNTEyIiB2aWV3Qm94PSItNDAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIj48ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjc3NzgyMiAwIDAgMC43Nzc4MjIgNDcuOTkwNSA1Ni44Nzc3KSI+PHBhdGggZD0ibTI3MSA1MTJoLTE5MWMtNDQuMTEzMjgxIDAtODAtMzUuODg2NzE5LTgwLTgwdi0yNzFjMC00NC4xMTMyODEgMzUuODg2NzE5LTgwIDgwLTgwaDE5MWM0NC4xMTMyODEgMCA4MCAzNS44ODY3MTkgODAgODB2MjcxYzAgNDQuMTEzMjgxLTM1Ljg4NjcxOSA4MC04MCA4MHptLTE5MS0zOTFjLTIyLjA1NDY4OCAwLTQwIDE3Ljk0NTMxMi00MCA0MHYyNzFjMCAyMi4wNTQ2ODggMTcuOTQ1MzEyIDQwIDQwIDQwaDE5MWMyMi4wNTQ2ODggMCA0MC0xNy45NDUzMTIgNDAtNDB2LTI3MWMwLTIyLjA1NDY4OC0xNy45NDUzMTItNDAtNDAtNDB6bTM1MSAyNjF2LTMwMmMwLTQ0LjExMzI4MS0zNS44ODY3MTktODAtODAtODBoLTIyMmMtMTEuMDQ2ODc1IDAtMjAgOC45NTMxMjUtMjAgMjBzOC45NTMxMjUgMjAgMjAgMjBoMjIyYzIyLjA1NDY4OCAwIDQwIDE3Ljk0NTMxMiA0MCA0MHYzMDJjMCAxMS4wNDY4NzUgOC45NTMxMjUgMjAgMjAgMjBzMjAtOC45NTMxMjUgMjAtMjB6bTAgMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZpbGw6IzdFN0U3RSI+PC9wYXRoPjwvZz4gPC9zdmc+);
+	transition: .3s;
+}.ioch-code-highlight:hover .io-btn-copy {
+	opacity: .6;
+}.ioch-code-highlight .io-btn-copy:hover {
+	opacity: 1;
+}
+.ioch-code-highlight .hidden{width:1px;position:absolute;height:1px;top:-10px;background:transparent;resize:none;border:0px solid transparent}
+.ioch-code-highlight .hidden:focus,.ioch-code-highlight .hidden:active{background:transparent;resize:none;border:0px solid transparent}
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #657b83; /* base00 */
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	/*font-size: inherit;*/
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: 0;
+    overflow: auto;
+    border-radius: 0 0 0.3em 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background-color: rgba(0,0,0,.05); /* base3 */
+	max-height: 700px;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+	color: #586e75; /* base01 */
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+	color: #2aa198; /* cyan */
+}
+
+.token.entity {
+	color: #657b83; /* base00 */
+	background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+	color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+	position: absolute;
+	left: 3.2em;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em; /* Same as .prism’s padding-top */
+
+	background: hsla(22, 4%, 48%, 0.08);
+	background: linear-gradient(to right, hsla(22, 4%, 48%, 0.1) 70%, hsla(24, 20%, 50%,0));
+
+	pointer-events: none;
+
+	line-height: inherit;
+	white-space: pre;
+}
+
+	.line-highlight:before,
+	.line-highlight[data-end]:after {
+		content: attr(data-start);
+		position: absolute;
+		top: .4em;
+		left: .6em;
+		min-width: 1em;
+		padding: 0 .5em;
+		background-color: hsla(24, 20%, 50%,.4);
+		color: hsl(24, 20%, 95%);
+		font: bold 65%/1.5 sans-serif;
+		text-align: center;
+		vertical-align: .3em;
+		border-radius: 999px;
+		text-shadow: none;
+		box-shadow: 0 1px white;
+	}
+
+	.line-highlight[data-end]:after {
+		content: attr(data-end);
+		top: auto;
+		bottom: .4em;
+	}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+	content: none;
+}
+
+pre[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+	position: relative;
+	white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid rgba(136,136,136,.4);
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+
