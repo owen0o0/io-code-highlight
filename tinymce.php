@@ -4,7 +4,7 @@
  * @Author URI: https://www.iowen.cn/
  * @Date: 2020-03-19 17:36:40
  * @LastEditors: iowen
- * @LastEditTime: 2022-08-04 06:31:13
+ * @LastEditTime: 2022-08-04 14:01:38
  * @FilePath: \io-code-highlight\tinymce.php
  * @Description: 
  */
@@ -28,7 +28,7 @@ function io_code_plugin_mce_css( $mce_css ) {
     return $mce_css;
 }
 function io_code_plugin_register_tinymce_button($buttons) {
-	array_push($buttons,  "io_code");
+	array_push($buttons,  "io_code_high");
 	return $buttons;
 }
  

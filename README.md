@@ -1,16 +1,21 @@
 # io Code Highlight 
 
-代码高亮插件，支持古腾堡代码块扩展。
+代码高亮插件，支持 WordPress 经典编辑器和古腾堡代码块扩展。
 
 ### 使用
 经典编辑器使用，看下图
 
-![Thumbnail_index](https://www.iowen.cn/wp-content/uploads/2020/04/iowen.cn_2020-04-06_13-44-54.png)
+![Thumbnail_index](/assets/screenshot-1.jpg)
 <br/>
 
 古腾堡使用，看下图
 
-![Thumbnail_index](https://www.iowen.cn/wp-content/uploads/2020/04/iowen.cn_2020-04-06_13-47-17.png)
+![Thumbnail_index](/assets/screenshot-2.jpg)
+<br/>
+
+前台效果，看下图
+
+![Thumbnail_index](/assets/screenshot-3.jpg)
 <br/>
 
 ### 安装

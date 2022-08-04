@@ -1,14 +1,14 @@
 /*
  * @Author: iowen
  * @Author URI: https://www.iowen.cn/
- * @Date: 2022-08-03 18:23:12
+ * @Date: 2020-05-23 12:23:12
  * @LastEditors: iowen
- * @LastEditTime: 2022-08-04 06:08:31
+ * @LastEditTime: 2022-08-04 13:59:36
  * @FilePath: \io-code-highlight\assets\js\code-editor.js
  * @Description: 
  */
 (function (blocks, blockEditor, element, components) {
-    var el = element.createElement; //用于输出HTML
+    var el = element.createElement; 
 
     var registerBlockType = blocks.registerBlockType,
         createBlock = blocks.createBlock,
