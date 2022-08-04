@@ -24,5 +24,11 @@ Prism语法highlighter运行前端加载的JavaScript来解析代码块并应用
 
 == Changelog ==
 
+= 2.0 =
+* 适配 wordpress 最新版古腾堡组件
+* 将 Prism 切换到 enlighterjs
+* 经典编辑器增加显示行号复选框
+* 重构所有功能
+
 = 1.0 =
 * 初版 1.0 
