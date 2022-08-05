@@ -4,11 +4,15 @@
  * @Author URI: https://www.iowen.cn/
  * @Date: 2020-03-19 20:49:49
  * @LastEditors: iowen
- * @LastEditTime: 2022-08-04 01:22:15
+ * @LastEditTime: 2022-08-05 23:51:24
  * @FilePath: \io-code-highlight\block.php
  * @Description: 
  */
 
+/**
+ * 添加古腾堡区块内容
+ * @return void 
+ */
 function io_code_block() {
     
     $depends = array( 'wp-blocks', 'wp-element', 'wp-components' );
@@ -37,21 +41,7 @@ function io_code_block() {
         'editor_script' => 'code_block',
         'editor_style'  => 'code_block',
     ) );
-    
-    require_once IOTHEME_BLOCK_PATH . '/code-languages.php';
-    
 
-    wp_add_inline_script(
-        'code_block',
-        implode( 
-            array(
-                'const io_code_languages = ' . json_encode( io_code_languages() ) . ';',
-                'const io_code_default_lang = "' . DEFAULT_LANG . '";',
-                'const io_code_default_numb = ' . (DEFAULT_NUMB?'true':'false') . ';',
-            )
-        ),
-        'before'
-    );
 }
 if (function_exists('register_block_type')) {
     add_action('init', 'io_code_block');

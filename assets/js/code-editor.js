@@ -3,11 +3,12 @@
  * @Author URI: https://www.iowen.cn/
  * @Date: 2020-05-23 12:23:12
  * @LastEditors: iowen
- * @LastEditTime: 2022-08-04 13:59:36
+ * @LastEditTime: 2022-08-05 23:32:21
  * @FilePath: \io-code-highlight\assets\js\code-editor.js
  * @Description: 
  */
-(function (blocks, blockEditor, element, components) {
+(function (blocks, blockEditor, element, components, escapeHtml) {
+    "use strict"; 
     var el = element.createElement; 
 
     var registerBlockType = blocks.registerBlockType,
@@ -18,22 +19,23 @@
         PanelBody = components.PanelBody,
         TextControl = components.TextControl,
         RadioControl = components.RadioControl,
-        Toolbar = components.Toolbar,
+        Toolbar = components.ToolbarGroup,
         SelectControl = components.SelectControl,
-        ToggleControl = components.ToggleControl
-        DropdownMenu = components.DropdownMenu,
-        BlockControls = blockEditor.BlockControls;
-
-    registerBlockType("ioblock/enlighter", {
+        ToggleControl = components.ToggleControl,
+        DropdownMenu = components.ToolbarDropdownMenu,
+        BlockControls = blockEditor.BlockControls,
+        escapeEditableHTML = escapeHtml.escapeEditableHTML ;
+    
+    registerBlockType("ioblock/enlighter",{
         title: "IO:高亮代码",
         icon: "editor-code",
         category: "io_block_cat",
         description: "输入代码，将自动高亮显示",
-        keywords: ["code", "代码"],
+        keywords: ["code", "sourcecode", "代码"],
         attributes: { 
             content: {
                 type: "string",
-                selector: "code.gl",
+                selector: "pre.io-enlighter-pre",
                 source: "text"
             },
             language: {
@@ -60,6 +62,23 @@
         transforms: {
             from: [
                 {
+                    type: "raw",
+                    priority: 4,
+                    isMatch: function(e) {
+                        return "PRE" === e.nodeName && "io-enlighter-pre" === e.className
+                    },
+                    transform: function (e) {
+                        e = e.firstChild;
+                        var n = e.dataset.enlighterLinenumbers == "true" ? true : false;
+                        return createBlock("ioblock/enlighter", {
+                            content: e.textContent,
+                            language: e.dataset.enlighterLanguage || "",
+                            highlight: e.dataset.enlighterHighlight || "",
+                            linenumbers: n,
+                            lineoffset: e.dataset.enlighterLineoffset || ""
+                        })
+                    }
+                }, {
                     type: "raw",
                     priority: 4,
                     isMatch: function (e) {
@@ -103,19 +122,24 @@
                 }
             ]
         },
-        edit: function (props) {
-            var r = props.setAttributes;
-            const { content, language, linenumbers, lineoffset, highlight } = props.attributes;
-            if (!language && io_code_default_lang) {
-                r({language: io_code_default_lang});
+        supports: {
+            customClassName: !0,
+            className: !1
+        },
+        edit: function(props) {
+            var d = props.attributes,
+                r = props.setAttributes;
+            if (!d.language && io_code_default_lang) {
+                d.language = io_code_default_lang;
             }
-            if ( linenumbers==="" && io_code_default_numb!=="") {
-                r({ linenumbers: io_code_default_numb });
+            if ( d.linenumbers==="" && io_code_default_numb!=="") {
+                d.linenumbers = io_code_default_numb;
             }
             var sm = el(Toolbar, null, el(DropdownMenu, {
                 className: "enlighter-dropdownmenu",
                 icon: "embed-generic",
                 label: "设置代码语言",
+                text: d.language,
                 controls: Object.keys(io_code_languages).map(
                         (lang) => ({
                             title: io_code_languages[lang],
@@ -130,7 +154,7 @@
                 }
             ));
             var sp = el(PlainText, {
-                value: content,
+                value: d.content,
                 placeholder: "请输入代码...",
                 "aria-label": "Code",
                 onChange: function (e) {
@@ -146,7 +170,7 @@
                         },
                         el(SelectControl, {
                             label: "代码语言",
-                            value: language,
+                            value: d.language,
                             options: [
                                 {
                                     label: "选择代码语言",
@@ -168,7 +192,7 @@
                         }),
                         el(ToggleControl, {
                             label: "显示行号",
-                            checked: linenumbers,
+                            checked: d.linenumbers,
                             onChange: function (e) {
                                 return r({
                                     linenumbers: e
@@ -177,7 +201,7 @@
                         }),
                         el(TextControl, {
                             label: "起始行号",
-                            value: lineoffset,
+                            value: d.lineoffset,
                             onChange: function (e) {
                                 return r({
                                     lineoffset: e
@@ -187,7 +211,7 @@
                         }),
                         el(TextControl, {
                             label: "高亮行号",
-                            value: highlight,
+                            value: d.highlight,
                             onChange: function (e) {
                                 return r({
                                     highlight: e
@@ -197,48 +221,40 @@
                         })
                     )
                 );
-            return el("div", null, el(Fragment, null, el(BlockControls, null, sm)),
+            return el(Fragment, null, el(BlockControls, null, sm),
                 el("div", {
-                        className: "enlighter-block-wrapper"
-                    },
-                    el("div", {
-                            className: "enlighter-header"
-                        },
-                        el("div", {
-                            className: "enlighter-title"
-                        })
-                    ),
-                    el("pre", {
-                            tagName: "pre",
-                            className: "enlighter-pre",
-                        },
-                        el("span", {
-                            className: "enlighter-label"
-                        }, language), sp
-                    ),
-                    el("div", {
-                        className: "enlighter-footer"
-                    }), sz
-                )
+                        className: "io-enlighter-pre"
+                    }, 
+                    el("span", {
+                        className: "enlighter-label"
+                    }, d.language ),
+                    sp
+                ),
+                sz
             )
         },
         save: function (props) {
-            const { content, language, linenumbers, lineoffset, highlight } = props.attributes;
-            var tt = el("code", {
+            var d = props.attributes,
+                e = props.className; 
+            e = "io-enlighter-pre" + (e ? " " + e : "");
+            var c = d.content ? escapeEditableHTML(d.content) : null;
+            var t = el("code", {
                     className: "gl",
-                    "data-enlighter-language": language,
-                    "data-enlighter-linenumbers": linenumbers,
-                    "data-enlighter-lineoffset": lineoffset,
-                    "data-enlighter-highlight": highlight
+                    "data-enlighter-language": d.language,
+                    "data-enlighter-linenumbers": d.linenumbers,
+                    "data-enlighter-lineoffset": d.lineoffset,
+                    "data-enlighter-highlight": d.highlight
                 },
-                content);
-            return el("pre", {}, tt)
+                c
+            );
+            return el("pre", {className: e}, t)
         }
-    });
+    }); 
 }(
     window.wp.blocks,
     window.wp.blockEditor,
     window.wp.element,
     window.wp.components,
+    window.wp.escapeHtml
 ));
     

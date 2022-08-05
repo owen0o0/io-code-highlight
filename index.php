@@ -3,7 +3,7 @@
  * Plugin Name:  io Code Highlight
  * Plugin URI:   https://www.iotheme.cn/store/io-code-highlight.html
  * Description:  一个代码语法高亮插件
- * Version:      2.0
+ * Version:      2.0.1
  * Author:       一为
  * Author URI:   https://www.iowen.cn
  * License:      GPL2
@@ -11,15 +11,16 @@
  * Text Domain:  i_theme
  */
 
-define('IOTHEME_BLOCK_VERSION', '2.0');
+define('IOTHEME_BLOCK_VERSION', '2.0.1');
 define('IOTHEME_BLOCK_URL', plugins_url('', __FILE__));
 define('IOTHEME_BLOCK_PATH', plugin_dir_path( __FILE__ ) );
 
-define('DEFAULT_LANG', 'php');
-define('DEFAULT_NUMB', true);
+define('IOTHEME_DEFAULT_LANG', 'php');
+define('IOTHEME_DEFAULT_NUMB', true);
 
 require IOTHEME_BLOCK_PATH . '/tinymce.php';
 require IOTHEME_BLOCK_PATH . '/block.php';
+require IOTHEME_BLOCK_PATH . '/code-languages.php';
 
 /**
  * 加载enlighter js
@@ -56,3 +57,16 @@ function io_code_add_enlighter_assets() {
     }
 }
 add_action('wp_enqueue_scripts',  'io_code_add_enlighter_assets' );
+
+/**
+ * 为编辑器添加全局变量
+ * @return void 
+ */
+function io_code_plugin_mce_config(){ 
+	echo '<script type="text/javascript">/* <![CDATA[ */
+	const io_code_languages = ' . json_encode( io_code_languages() ) . '; 
+	const io_code_default_lang = "' . IOTHEME_DEFAULT_LANG . '";
+	const io_code_default_numb = ' . (IOTHEME_DEFAULT_NUMB?'true':'false') . ';
+ /* ]]> */</script>';
+}
+add_action('admin_print_scripts', 'io_code_plugin_mce_config');//wp_enqueue_editor | wp_head

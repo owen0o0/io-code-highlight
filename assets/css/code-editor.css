@@ -1,4 +1,4 @@
-.enlighter-pre{
+.io-enlighter-pre{
   position:relative;
   font: 12px "courier new";
   overflow-y: auto;
@@ -15,7 +15,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 2px 5px rgba(0,0,0,.2);
 }
-.enlighter-pre:before {
+.io-enlighter-pre:before {
   content: " ";
   position: absolute;
   -webkit-border-radius: 50%;
@@ -30,15 +30,16 @@
   box-shadow: 16px 0 #888, 32px 0 #888;
   transition-duration: .3s;
 }
-.enlighter-pre textarea {
-  min-height: 60px;
+.io-enlighter-pre textarea {
+  min-height: 40px;
   max-height: 320px;
   overflow: auto;
   padding: .5rem;
   background: #eee;
 }
-.enlighter-pre code {
+.io-enlighter-pre code {
   display: block;
+  min-height: 40px;
   background:transparent;
 }
 .enlighter-label{

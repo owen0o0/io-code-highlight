@@ -2,10 +2,10 @@
 Contributors: 一为
 Donate link: https://www.iowen.cn
 Tags: code,highlight,code syntax,代码,代码高亮
-Requires at least: 5.2
+Requires at least: 5.6
+Tested up to: 6.0.1
 Requires PHP: 7.2
-Tested up to: 5.3
-Stable tag: trunk
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,11 @@ io Code Highlight 使用 enlighterjs 语法高亮显示支持。
 3.前台效果
 
 == Changelog ==
+
+= 2.0.1 =
+- 修复古腾堡区块js错误
+- 修复经典编辑器转古腾堡代码块信息丢失的错误
+- 重写经典编辑器弹窗模块
 
 = 2.0 =
 - 适配 wordpress 最新版古腾堡组件
