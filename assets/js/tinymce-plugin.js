@@ -3,7 +3,7 @@
  * @Author URI: https://www.iowen.cn/
  * @Date: 2020-03-19 18:23:12
  * @LastEditors: iowen
- * @LastEditTime: 2022-08-05 23:36:37
+ * @LastEditTime: 2022-08-06 10:35:11
  * @FilePath: \io-code-highlight\assets\js\tinymce-plugin.js
  * @Description: 
  */
@@ -85,13 +85,11 @@
 	tinymce.PluginManager.add('io_code_button', tinymce.plugins.io_codeButtons);
 
 	function toOption(data) {
-		var language = [];
-		data.forEach( function (key, value) {
-			language.push({
-				text: value,
-				value: key
+		return Object.keys(data).map(
+			(lang) => ({
+				text: data[lang],
+				value: lang
 			})
-		});
-		return language;
+		)
 	} 
 })();

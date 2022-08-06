@@ -1,5 +1,5 @@
 === io Code Highlight ===
-Contributors: 一为
+Contributors: owen0o0
 Donate link: https://www.iowen.cn
 Tags: code,highlight,code syntax,代码,代码高亮
 Requires at least: 5.6
